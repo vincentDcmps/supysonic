@@ -57,7 +57,7 @@ class UserManager:
                 if user.admin != ldap_user["admin"]:
                     user.admin = ldap_user["admin"]
                 if user.mail != ldap_user["mail"]:
-                    user.mail = ldap_user['mail']
+                    user.mail = ldap_user["mail"]
             return user
         else:
             if user is None:
