@@ -12,9 +12,11 @@ class LdapManager:
             logger.debug("LDAP 'server_url' is not configured.")
             raise ValueError
         elif not ldap3:
-            raise ValueError("Module 'ldap3' is not installed.")
+            logger.error("Module 'ldap3' is not installed.")
+            raise ValueError
         elif None in config.values():
-            raise ValueError("Some required LDAP parameters are missing.")
+            logger.error("Some required LDAP parameters are missing.")
+            raise ValueError
 
         self.server = ldap3.Server(config["server_url"], get_info=None)
         self.config = config
