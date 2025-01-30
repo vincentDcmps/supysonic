@@ -48,7 +48,10 @@ class UserManager:
     @staticmethod
     def try_auth(name, password):
         ldap = LdapManager(**get_current_config().LDAP)
-        ldap_user = ldap.try_auth(name, password) if ldap is not None else None
+        if ldap:
+            ldap_user = ldap.try_auth(name, password)
+        else:
+            ldap_user = None
         user = User.get_or_none(name=name)
         if ldap_user:
             if user is None:
